@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://raw.githubusercontent.com/Versifyra/Protocols/master/plugins/manifest.schema.json",
+  "$id": "https://raw.githubusercontent.com/Versifyra/protocols/master/plugins/manifest.schema.json",
   "title": "Versifyra Plugin Manifest",
   "description": "A manifest for Versifyra plugins, used to define the purpose and capabilities of a plugin.",
   "required": [
