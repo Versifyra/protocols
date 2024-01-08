@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/Versifyra/Protocols/master/plugins/manifest.schema.json",
+  "title": "Versifyra Plugin Manifest",
+  "description": "A manifest for Versifyra plugins, used to define the purpose and capabilities of a plugin.",
+  "type": "object",
+  "properties": {
+    "name": {
+      "required": true,
+      "description": "The name of the plugin.",
+      "type": "string"
+    },
+    "version": {
+      "required": true,
+      "description": "The version of the plugin.",
+      "type": "string"
+    },
+    "type": {
+      "required": true,
+      "description": "The type of the plugin.",
+      "type": "string",
+      "enum": [
+        "source"
+      ]
+    },
+    "hash": {
+      "required": true,
+      "description": "The hash of the plugin. If the plugin is not signed, this should be the hash of the plugin's contents.",
+      "type": "string"
+    },
+    "description": {
+      "description": "A description of the plugin.",
+      "type": "string"
+    },
+    "author": {
+      "description": "The author of the plugin.",
+      "type": "string"
+    },
+    "license": {
+      "description": "The license of the plugin.",
+      "type": "string"
+    },
+    "repository": {
+      "description": "The repository of the plugin.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of the repository.",
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL of the repository.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "url"
+      ]
+    }
+  }
+}
