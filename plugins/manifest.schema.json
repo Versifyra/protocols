@@ -15,13 +15,16 @@
       "description": "The version of the plugin.",
       "type": "string"
     },
-    "type": {
+    "scopes": {
       "required": true,
-      "description": "The type of the plugin.",
-      "type": "string",
-      "enum": [
-        "source"
-      ]
+      "description": "The scopes of the plugin.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "source"
+        ]
+      }
     },
     "hash": {
       "required": true,
