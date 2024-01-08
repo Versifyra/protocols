@@ -3,62 +3,113 @@
   "$id": "https://raw.githubusercontent.com/Versifyra/Protocols/master/plugins/manifest.schema.json",
   "title": "Versifyra Plugin Manifest",
   "description": "A manifest for Versifyra plugins, used to define the purpose and capabilities of a plugin.",
+  "required": [
+    "name",
+    "version",
+    "scopes",
+    "hash"
+  ],
   "type": "object",
   "properties": {
     "name": {
-      "required": true,
       "description": "The name of the plugin.",
-      "type": "string"
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "maxLength": 32,
+      "examples": [
+        "example-plugin",
+        "my-plugin",
+        "my-plugin-2"
+      ]
+    },
+    "full_name": {
+      "description": "The full name of the plugin. Spaces and capital letters are allowed.",
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9- ]+$",
+      "maxLength": 48,
+      "examples": [
+        "Example Plugin",
+        "My Plugin",
+        "My Plugin 2"
+      ]
     },
     "version": {
-      "required": true,
       "description": "The version of the plugin.",
-      "type": "string"
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": [
+        "1.0.0",
+        "1.2.3",
+        "0.0.1",
+        "14.88.0"
+      ]
     },
     "scopes": {
-      "required": true,
-      "description": "The scopes of the plugin.",
+      "description": "The scopes of the plugin. The plugin must have at least one scope.",
       "type": "array",
       "items": {
         "type": "string",
+        "description": "One of the scopes of the plugin.",
         "enum": [
           "source"
         ]
-      }
+      },
+      "minItems": 1,
+      "uniqueItems": true
     },
     "hash": {
-      "required": true,
       "description": "The hash of the plugin. If the plugin is not signed, this should be the hash of the plugin's contents.",
-      "type": "string"
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "examples": [
+        "adf59df8a7dc598e6587df5a",
+        "a0f5a9d8f7d5ae8d7f5df8a7"
+      ]
     },
     "description": {
       "description": "A description of the plugin.",
-      "type": "string"
+      "type": "string",
+      "maxLength": 256,
+      "examples": [
+        "A plugin that does something.",
+        "A plugin that does something else."
+      ]
     },
-    "author": {
-      "description": "The author of the plugin.",
-      "type": "string"
+    "authors": {
+      "description": "The authors of the plugin.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "One of the authors of the plugin."
+      },
+      "minItems": 1,
+      "uniqueItems": true,
+      "examples": [
+        [
+          "John Doe",
+          "Jane Doe"
+        ],
+        [
+          "John Doe"
+        ]
+      ]
     },
     "license": {
-      "description": "The license of the plugin.",
-      "type": "string"
+      "description": "The license of the plugin. SPDX license identifiers are recommended.",
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9-.]+(?: (?:OR|AND) [a-zA-Z0-9-.]+)?$",
+      "examples": [
+        "MIT",
+        "MIT OR Apache-2.0",
+        "Apache-2.0"
+      ]
     },
     "repository": {
-      "description": "The repository of the plugin.",
-      "type": "object",
-      "properties": {
-        "type": {
-          "description": "The type of the repository.",
-          "type": "string"
-        },
-        "url": {
-          "description": "The URL of the repository.",
-          "type": "string"
-        }
-      },
-      "required": [
-        "type",
-        "url"
+      "description": "The url of the repository of the plugin.",
+      "type": "string",
+      "format": "uri",
+      "examples": [
+        "https://github.com/Versifyra/versifyra"
       ]
     }
   }
